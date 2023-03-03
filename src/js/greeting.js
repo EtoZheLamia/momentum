@@ -3,7 +3,7 @@ const TIMES_OF_DAY = ['Доброй ночи', 'Доброе утро', 'Доб�
 const NAME = document.querySelector('.name');
 
 function getTimeOfDay(time) {
-  GREETING.textContent = `${TIMES_OF_DAY[Math.floor(time / 6)]},`;
+  GREETING.textContent = `${TIMES_OF_DAY[time]},`;
 }
 
 function setLocalStorage() {

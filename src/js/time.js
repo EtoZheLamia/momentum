@@ -15,7 +15,7 @@ function showTime() {
   const currentTime = date.toLocaleTimeString();
   TIME.textContent = currentTime;
   showDate();
-  const hours = date.getHours();
+  const hours = date.getHours() / 6;
   getTimeOfDay(hours);
   setTimeout(showTime, 1000);
 }
