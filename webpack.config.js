@@ -36,8 +36,8 @@ module.exports = {
     }),
     // new CopyPlugin({
     //   patterns: [
-    //     { from:  path.resolve(__dirname, 'src/photos'),
-    //     to: path.resolve(__dirname, 'dist/photos')},
+    //     { from:  path.resolve(__dirname, 'src/assets/favicon'),
+    //     to: path.resolve(__dirname, 'dist/assets/favicon', '[contenthash][ext]')},
     //     // { from:  path.resolve(__dirname, 'src/img'),
     //     // to: path.resolve(__dirname, 'dist/img', '[contenthash][ext]')},
     //   ],
@@ -125,7 +125,7 @@ module.exports = {
         test: /\.ico$/i,
         type: 'asset/resource',
         generator: {
-          filename: '[path]/[name][ext]',
+          filename: '[name][ext]',
           },
       },
       {
