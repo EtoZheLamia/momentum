@@ -1,3 +1,5 @@
+import {getTimeOfDay} from './greeting.js';
+
 const TIME = document.querySelector('.time');
 const DATE = document.querySelector('.date');
 const dateOptions = {weekday: 'long', month: 'long', day: 'numeric', timeZone: 'UTC'};
@@ -13,6 +15,8 @@ function showTime() {
   const currentTime = date.toLocaleTimeString();
   TIME.textContent = currentTime;
   showDate();
+  const hours = date.getHours();
+  getTimeOfDay(hours);
   setTimeout(showTime, 1000);
 }
 
