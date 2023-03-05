@@ -1,9 +1,17 @@
-const GREETING = document.querySelector('.greeting');
-const TIMES_OF_DAY = ['Доброй ночи', 'Доброе утро', 'Добрый день', 'Добрый вечер'];
+const GREETING_CONTAINER = document.querySelector('.greeting');
+
 const NAME = document.querySelector('.name');
 
-function getTimeOfDay(time) {
-  GREETING.textContent = `${TIMES_OF_DAY[Math.floor(time / 6)]},`;
+const TIME_OF_DAY = ['night', 'morning', 'afternoon', 'evening', ];
+
+function getTimeOfDay() {
+  const date = new Date();
+  const hours = date.getHours();
+  return TIME_OF_DAY[Math.floor(hours / 6)];
+}
+
+function setGreetings() {
+  GREETING_CONTAINER.textContent = `Good ${getTimeOfDay()},`;
 }
 
 function setLocalStorage() {
@@ -16,4 +24,4 @@ function getLocalStorage() {
   }
 }
 
-export {getTimeOfDay, getLocalStorage, setLocalStorage};
+export {setGreetings, getLocalStorage, setLocalStorage, getTimeOfDay};

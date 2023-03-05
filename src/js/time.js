@@ -1,4 +1,4 @@
-import {getTimeOfDay} from './greeting.js';
+import {setGreetings} from './greeting.js';
 
 const TIME = document.querySelector('.time');
 const DATE = document.querySelector('.date');
@@ -6,7 +6,7 @@ const dateOptions = {weekday: 'long', month: 'long', day: 'numeric', timeZone: '
 
 function showDate() {
   const date = new Date();
-  const currentDate = date.toLocaleDateString('ru-RU', dateOptions);
+  const currentDate = date.toLocaleDateString('en-US', dateOptions);
   DATE.textContent = currentDate[0].toUpperCase() + currentDate.slice(1);
 }
 
@@ -15,8 +15,7 @@ function showTime() {
   const currentTime = date.toLocaleTimeString();
   TIME.textContent = currentTime;
   showDate();
-  const hours = date.getHours();
-  getTimeOfDay(hours);
+  setGreetings();
   setTimeout(showTime, 1000);
 }
 
