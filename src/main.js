@@ -3,7 +3,8 @@ import './css/owfont-regular.css';
 
 
 import './js/time.js';
-import './js/image-slider';
+import './js/image-slider.js';
+import './js/weather.js';
 
 import {getLocalStorage, setLocalStorage} from './js/greeting';
 window.addEventListener('beforeunload', setLocalStorage);
