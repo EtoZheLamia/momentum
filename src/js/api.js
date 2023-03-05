@@ -8,4 +8,16 @@ function getWeather(city, onSuccess, onFail) {
     });
 }
 
-export {getWeather};
+function getQuotes(onSuccess, onFail) {
+  const quotes = 'https://raw.githubusercontent.com/EtoZheLamia/momentum_assets/main/data.json';
+  fetch(quotes)
+    .then((response) => response.json())
+    .then((data) => {
+      onSuccess(data);
+    })
+    .catch(() => {
+      onFail();
+    });
+}
+
+export {getWeather,getQuotes};
