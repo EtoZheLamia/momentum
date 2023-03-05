@@ -1,7 +1,5 @@
 const GREETING_CONTAINER = document.querySelector('.greeting');
-
 const NAME = document.querySelector('.name');
-
 const TIME_OF_DAY = ['night', 'morning', 'afternoon', 'evening', ];
 
 function getTimeOfDay() {
@@ -14,6 +12,7 @@ function setGreetings() {
   GREETING_CONTAINER.textContent = `Good ${getTimeOfDay()},`;
 }
 
+
 function setLocalStorage() {
   localStorage.setItem('name', NAME.value);
 }
@@ -23,5 +22,7 @@ function getLocalStorage() {
     NAME.value = localStorage.getItem('name');
   }
 }
+window.addEventListener('beforeunload', setLocalStorage);
+window.addEventListener('load', getLocalStorage);
 
-export {setGreetings, getLocalStorage, setLocalStorage, getTimeOfDay};
+export {setGreetings, getTimeOfDay};
