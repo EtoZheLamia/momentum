@@ -1,4 +1,5 @@
 import {getRandomPositiveInteger} from './util.js';
+import {getTimeOfDay} from './greeting.js';
 
 const bgImage = document.querySelector('body');
 let bgNum = getRandomPositiveInteger(1, 20);
@@ -9,25 +10,8 @@ nextImage.addEventListener('click', getSlideNext);
 prevImage.addEventListener('click', getSlidePrev);
 
 function setBg() {
-  const date = new Date();
-  const hours = date.getHours();
-  let timeOfDay;
-  switch (Math.floor(hours / 6)) {
-    case 0:
-      timeOfDay = 'night';
-      break;
-    case 1:
-      timeOfDay = 'morning';
-      break;
-    case 2:
-      timeOfDay = 'afternoon';
-      break;
-    case 3:
-      timeOfDay = 'evening';
-      break;
-  }
   const img = new Image();
-  img.src = `https://raw.githubusercontent.com/EtoZheLamia/momentum_assets/main/${timeOfDay}/${String(bgNum).padStart(2, '0')}.webp`;
+  img.src = `https://raw.githubusercontent.com/EtoZheLamia/momentum_assets/main/${getTimeOfDay()}/${String(bgNum).padStart(2, '0')}.webp`;
   img.onload = () => {
     bgImage.style.backgroundImage = `url(${img.src})`;
   };
