@@ -1,4 +1,3 @@
-
 import { getWeather } from './api.js';
 
 const weatherContainer = document.querySelector('.weather');
@@ -48,6 +47,3 @@ function getLocalStorage() {
 
 window.addEventListener('beforeunload', setLocalStorage);
 window.addEventListener('load', getLocalStorage);
-
-
-
