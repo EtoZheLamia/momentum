@@ -1,7 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-// const CopyPlugin = require('copy-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const mode = process.env.NODE_ENV || 'development';
 const devMode = mode === 'development';
@@ -34,14 +34,12 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',
     }),
-    // new CopyPlugin({
-    //   patterns: [
-    //     { from:  path.resolve(__dirname, 'src/assets/favicon'),
-    //     to: path.resolve(__dirname, 'dist/assets/favicon', '[contenthash][ext]')},
-    //     // { from:  path.resolve(__dirname, 'src/img'),
-    //     // to: path.resolve(__dirname, 'dist/img', '[contenthash][ext]')},
-    //   ],
-    // }),
+    new CopyPlugin({
+      patterns: [
+        { from:  path.resolve(__dirname, 'src/assets/sounds'),
+        to: path.resolve(__dirname, 'dist/assets/sounds', '[name][ext]')},
+      ],
+    }),
   ],
   module: {
     rules: [
@@ -126,6 +124,13 @@ module.exports = {
         type: 'asset/resource',
         generator: {
           filename: '[name][ext]',
+          },
+      },
+      {
+        test: /\mp3$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: '[path]/[name][ext]',
           },
       },
       {
