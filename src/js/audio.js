@@ -1,13 +1,19 @@
 import { playList } from './playList.js';
 const audio = new Audio();
-const play = document.querySelector('.play');
-const playListContainer = document.querySelector('.play-list');
-const playNextBtn = document.querySelector('.play-next');
-const playPrevBtn = document.querySelector('.play-prev');
+const playerContainer = document.querySelector('.player');
+const play = playerContainer.querySelector('.play');
+const playListContainer = playerContainer.querySelector('.play-list');
+const playNextBtn = playerContainer.querySelector('.play-next');
+const playPrevBtn = playerContainer.querySelector('.play-prev');
 let isPlay = false;
 let playNum = 0;
 let playItem;
 let currentTimeSong = 0;
+
+const songTitle = playerContainer.querySelector('.song-title');
+songTitle.textContent = playList[playNum].title;
+
+const progressBar = document.querySelector('.progress-bar');
 
 function setPlayItem() {
   playItem = playListContainer.querySelectorAll('.play-item')[playNum];
@@ -20,6 +26,7 @@ function playAudio() {
   audio.play();
   isPlay = true;
   setPlayItem();
+  songTitle.textContent = playList[playNum].title;
 }
 
 function pauseAudio() {
@@ -33,7 +40,7 @@ play.addEventListener('click', (evt) => {
   isPlay ? pauseAudio() : playAudio();
 });
 
-playNextBtn.addEventListener('click', () => {
+function playNext() {
   setPlayItem();
   if (audio.paused) {
     play.classList.add('pause');
@@ -44,9 +51,9 @@ playNextBtn.addEventListener('click', () => {
   playNum === playList.length - 1 ? playNum = 0 : playNum ++;
   currentTimeSong = 0;
   playAudio();
-});
+}
 
-playPrevBtn.addEventListener('click', () => {
+function playPrev() {
   setPlayItem();
   if (audio.paused) {
     play.classList.add('pause');
@@ -57,12 +64,15 @@ playPrevBtn.addEventListener('click', () => {
   playNum === 0 ? playNum = playList.length - 1 : playNum --;
   currentTimeSong = 0;
   playAudio();
-});
+}
+
+playNextBtn.addEventListener('click', playNext);
+
+playPrevBtn.addEventListener('click', playPrev);
 
 audio.onended = () => {
   playItem.classList.remove('item-active');
-  playNum ++;
-  playAudio();
+  playNext();
 };
 
 playList.forEach((el) => {
@@ -70,4 +80,27 @@ playList.forEach((el) => {
   li.classList.add('play-item');
   li.textContent = el.title;
   playListContainer.append(li);
+});
+
+function updateProgressValue() {
+  progressBar.max = audio.duration;
+  progressBar.value = audio.currentTime;
+  playerContainer.querySelector('.current-time').textContent = (formatTime(Math.floor(audio.currentTime)));
+  document.querySelector('.duration-time').textContent = playList[playNum].duration;
+}
+
+function formatTime(seconds) {
+  const min = Math.floor((seconds / 60));
+  let sec = Math.floor(seconds - (min * 60));
+  if (sec < 10){
+    sec  = `0${sec}`;
+  }
+  return `${min}:${sec}`;
+}
+
+setInterval(updateProgressValue, 500);
+
+
+progressBar.addEventListener('change', ()=> {
+  audio.currentTime = progressBar.value;
 });
