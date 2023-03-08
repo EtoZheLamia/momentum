@@ -7,58 +7,47 @@ const playNextBtn = playerContainer.querySelector('.play-next');
 const playPrevBtn = playerContainer.querySelector('.play-prev');
 let isPlay = false;
 let playNum = 0;
-let playItem;
 let currentTimeSong = 0;
 
 const songTitle = playerContainer.querySelector('.song-title');
 songTitle.textContent = playList[playNum].title;
 
-function setPlayItem() {
-  playItem = playListContainer.querySelectorAll('.play-item')[playNum];
-  playItem.classList.add('item-active');
-}
+playList.forEach((el,i) => {
+  const li = document.createElement('li');
+  li.classList.add('play-item');
+  li.textContent = el.title;
+  li.dataset.index = i;
+  playListContainer.append(li);
+});
+const playItems = playListContainer.querySelectorAll('.play-item');
+let playItem;
 
 function playAudio() {
   audio.src = playList[playNum].src;
   audio.currentTime = currentTimeSong;
   audio.play();
   isPlay = true;
-  setPlayItem();
+  playItem = playItems[playNum];
+  playItem.classList.add('item-active');
   songTitle.textContent = playList[playNum].title;
 }
 
 function pauseAudio() {
   audio.pause();
+  playItem.classList.remove('item-active');
   isPlay = false;
   currentTimeSong = audio.currentTime;
 }
 
-play.addEventListener('click', (evt) => {
-  evt.target.classList.toggle('pause');
-  isPlay ? pauseAudio() : playAudio();
-});
-
 function playNext() {
-  setPlayItem();
-  if (audio.paused) {
-    play.classList.add('pause');
-  }
-  if (playItem.classList.contains('item-active')) {
-    playItem.classList.remove('item-active');
-  }
-  playNum === playList.length - 1 ? playNum = 0 : playNum ++;
+  playItems[playNum].classList.remove('item-active');
+  playNum === playList.length - 1 ? playNum = 0 : playNum++;
   currentTimeSong = 0;
   playAudio();
 }
 
 function playPrev() {
-  setPlayItem();
-  if (audio.paused) {
-    play.classList.add('pause');
-  }
-  if (playItem.classList.contains('item-active')) {
-    playItem.classList.remove('item-active');
-  }
+  playItems[playNum].classList.remove('item-active');
   playNum === 0 ? playNum = playList.length - 1 : playNum --;
   currentTimeSong = 0;
   playAudio();
@@ -69,15 +58,26 @@ playNextBtn.addEventListener('click', playNext);
 playPrevBtn.addEventListener('click', playPrev);
 
 audio.onended = () => {
-  playItem.classList.remove('item-active');
   playNext();
 };
 
-playList.forEach((el) => {
-  const li = document.createElement('li');
-  li.classList.add('play-item');
-  li.textContent = el.title;
-  playListContainer.append(li);
+playListContainer.addEventListener('click', (evt) => {
+  if (evt.target.classList.contains('item-active')){
+    evt.target.classList.remove('item-active');
+    play.classList.remove('pause');
+    pauseAudio();
+  } else {
+    playItems.forEach(el => el.classList.remove('item-active'));
+    play.classList.add('pause');
+    playNum = evt.target.getAttribute('data-index');
+    currentTimeSong = 0;
+    playAudio();
+  }
+});
+
+play.addEventListener('click', (evt) => {
+  evt.target.classList.toggle('pause');
+  isPlay ? pauseAudio() : playAudio();
 });
 
 function updateProgressValue() {
@@ -123,5 +123,3 @@ volume.addEventListener('click', () => {
     volume.classList.remove('volume-mute');
   }
 });
-
-
