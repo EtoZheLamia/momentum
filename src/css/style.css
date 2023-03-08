@@ -31,16 +31,28 @@ body {
   padding: 20px;
 }
 
+.player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  width: 250px;
+}
+
 .player-controls {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 120px;
-  margin-bottom: 28px;
+  width: 100%;
 }
 
 .play-list {
   text-align: left;
+  align-self: flex-start;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .play-item {
@@ -87,13 +99,15 @@ body {
 
 .player-icon:hover,
 .slider-icon:hover,
-.change-quote:hover {
+.change-quote:hover,
+.play-item:hover::after {
   opacity: 1;
 }
 
 .player-icon:active,
 .slider-icon:active,
-.change-quote:active {
+.change-quote:active,
+.play-item:active::after {
   border: 0;
   outline: 0;
   transform: scale(1.1);
@@ -283,4 +297,90 @@ body {
     font-size: 32px;
     padding: 5px;
   }
+}
+
+.progress-container {
+  gap: 5px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.timeline {
+  background: white;
+  width: 100%;
+  position: relative;
+  cursor: pointer;
+  box-shadow: 0 2px 10px 0 #0008;
+  height: 6px;
+}
+
+.progress {
+  background: rgb(127, 198, 240);
+  width: 0%;
+  height: 100%;
+  transition: 0.25s;
+}
+
+
+.volume {
+  background-image: url('../assets/icons/high-sound.svg');
+}
+
+.volume-mute {
+  background-image: url('../assets/icons/mute-sound.svg');
+}
+
+.volume-container {
+  width: 52%;
+  display: flex;
+  position: relative;
+}
+
+.volume-button {
+  margin-right: auto;
+}
+
+.volume-slider {
+  position: absolute;
+  left: 33px;
+  top: 13px;
+  width: 0;
+  height: 6px;
+  background: white;
+  box-shadow: 0 0 20px #000a;
+  transition: 0.25s;
+}
+
+.volume-slider .volume-percentage {
+  background: rgb(127, 198, 240);
+  height: 100%;
+  width: 75%;
+}
+
+.volume-container:hover .volume-slider  {
+  left: 35px;
+  width: 96px;
+}
+
+.play-item::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 4px;
+  width: 20px;
+  height: 20px;
+  background-image: url('http://localhost:3000/assets/icons//play.svg');
+  background-size: 20px;
+}
+
+.item-active::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 4px;
+  width: 20px;
+  height: 20px;
+  background-image: url('http://localhost:3000/assets/icons/pause.svg');
+  background-size: 20px;
 }
