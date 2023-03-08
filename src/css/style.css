@@ -326,5 +326,33 @@ body {
 }
 
 .volume-container {
-  margin-left: auto;
+  width: 52%;
+  display: flex;
+  position: relative;
+}
+
+.volume-button {
+  margin-right: auto;
+}
+
+.volume-slider {
+  position: absolute;
+  left: 33px;
+  top: 9px;
+  width: 0;
+  height: 15px;
+  background: white;
+  box-shadow: 0 0 20px #000a;
+  transition: 0.25s;
+}
+
+.volume-slider .volume-percentage {
+  background: rgb(127, 198, 240);
+  height: 100%;
+  width: 75%;
+}
+
+.volume-container:hover .volume-slider  {
+  left: 35px;
+  width: 96px;
 }

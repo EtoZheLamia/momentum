@@ -9,7 +9,6 @@ let isPlay = false;
 let playNum = 0;
 let playItem;
 let currentTimeSong = 0;
-let currentVolume
 
 const songTitle = playerContainer.querySelector('.song-title');
 songTitle.textContent = playList[playNum].title;
@@ -26,7 +25,6 @@ function playAudio() {
   isPlay = true;
   setPlayItem();
   songTitle.textContent = playList[playNum].title;
-  currentVolume = audio.volume
 }
 
 function pauseAudio() {
@@ -109,9 +107,21 @@ timeline.addEventListener('click', (evt) => {
 
 const volume = playerContainer.querySelector('.volume');
 
-volume.addEventListener('click', (evt) => {
-  evt.target.classList.toggle('volume-mute');
-  audio.volume > 0 ? audio.volume = 0 : audio.volume = currentVolume
+const volumeSlider = playerContainer.querySelector('.volume-slider');
+volumeSlider.addEventListener('click', (evt) => {
+  const sliderWidth = window.getComputedStyle(volumeSlider).width;
+  const newVolume = evt.offsetX / parseInt(sliderWidth);
+  audio.volume = newVolume;
+  playerContainer.querySelector('.volume-percentage').style.width = `${newVolume * 100  }%`;
+});
+
+volume.addEventListener('click', () => {
+  audio.muted = !audio.muted;
+  if (audio.muted) {
+    volume.classList.add('volume-mute');
+  } else {
+    volume.classList.remove('volume-mute');
+  }
+});
 
 
-})
