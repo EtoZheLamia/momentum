@@ -43,7 +43,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 120px;
+  width: 100%;
 }
 
 .play-list {
@@ -314,4 +314,17 @@ body {
   width: 0%;
   height: 100%;
   transition: 0.25s;
+}
+
+
+.volume {
+  background-image: url('../assets/icons/high-sound.svg');
+}
+
+.volume-mute {
+  background-image: url('../assets/icons/mute-sound.svg');
+}
+
+.volume-container {
+  margin-left: auto;
 }

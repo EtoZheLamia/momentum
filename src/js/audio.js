@@ -9,6 +9,7 @@ let isPlay = false;
 let playNum = 0;
 let playItem;
 let currentTimeSong = 0;
+let currentVolume
 
 const songTitle = playerContainer.querySelector('.song-title');
 songTitle.textContent = playList[playNum].title;
@@ -25,6 +26,7 @@ function playAudio() {
   isPlay = true;
   setPlayItem();
   songTitle.textContent = playList[playNum].title;
+  currentVolume = audio.volume
 }
 
 function pauseAudio() {
@@ -105,3 +107,11 @@ timeline.addEventListener('click', (evt) => {
   audio.currentTime = timeToSeek;
 });
 
+const volume = playerContainer.querySelector('.volume');
+
+volume.addEventListener('click', (evt) => {
+  evt.target.classList.toggle('volume-mute');
+  audio.volume > 0 ? audio.volume = 0 : audio.volume = currentVolume
+
+
+})
