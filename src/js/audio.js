@@ -13,8 +13,6 @@ let currentTimeSong = 0;
 const songTitle = playerContainer.querySelector('.song-title');
 songTitle.textContent = playList[playNum].title;
 
-const progressBar = document.querySelector('.progress-bar');
-
 function setPlayItem() {
   playItem = playListContainer.querySelectorAll('.play-item')[playNum];
   playItem.classList.add('item-active');
@@ -83,11 +81,13 @@ playList.forEach((el) => {
 });
 
 function updateProgressValue() {
-  progressBar.max = audio.duration;
-  progressBar.value = audio.currentTime;
+  const progressBar = playerContainer.querySelector('.progress');
+  progressBar.style.width = `${audio.currentTime / audio.duration * 100  }%`;
   playerContainer.querySelector('.current-time').textContent = (formatTime(Math.floor(audio.currentTime)));
   document.querySelector('.duration-time').textContent = playList[playNum].duration;
 }
+
+setInterval(updateProgressValue, 500);
 
 function formatTime(seconds) {
   const min = Math.floor((seconds / 60));
@@ -98,9 +98,10 @@ function formatTime(seconds) {
   return `${min}:${sec}`;
 }
 
-setInterval(updateProgressValue, 500);
-
-
-progressBar.addEventListener('change', ()=> {
-  audio.currentTime = progressBar.value;
+const timeline = playerContainer.querySelector('.timeline');
+timeline.addEventListener('click', (evt) => {
+  const timelineWidth = window.getComputedStyle(timeline).width;
+  const timeToSeek = evt.offsetX / parseInt(timelineWidth) * audio.duration;
+  audio.currentTime = timeToSeek;
 });
+
