@@ -1,17 +1,21 @@
 const GREETING_CONTAINER = document.querySelector('.greeting');
 const NAME = document.querySelector('.name');
-const TIME_OF_DAY = ['night', 'morning', 'afternoon', 'evening', ];
+
+const greetingTranslation ={
+  'en': ['Good night', 'Good morning', 'Good afternoon', 'Good evening'],
+  'ru' : ['Доброй ночи', 'Доброе утро', 'Добрый день', 'Добрый вечер']
+};
+
 
 function getTimeOfDay() {
   const date = new Date();
   const hours = date.getHours();
-  return TIME_OF_DAY[Math.floor(hours / 6)];
+  return Math.floor(hours / 6);
 }
 
-function setGreetings() {
-  GREETING_CONTAINER.textContent = `Good ${getTimeOfDay()},`;
+function setGreetings(language) {
+  GREETING_CONTAINER.textContent = `${greetingTranslation[language][getTimeOfDay()]},`;
 }
-
 
 function setLocalStorage() {
   localStorage.setItem('name', NAME.value);
@@ -22,6 +26,7 @@ function getLocalStorage() {
     NAME.value = localStorage.getItem('name');
   }
 }
+
 window.addEventListener('beforeunload', setLocalStorage);
 window.addEventListener('load', getLocalStorage);
 

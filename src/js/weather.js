@@ -1,4 +1,5 @@
 import { getWeather } from './api.js';
+import { currentLanguage } from './translation.js';
 
 const weatherContainer = document.querySelector('.weather');
 const weatherIcon = weatherContainer.querySelector('.weather-icon');
@@ -7,7 +8,8 @@ const weatherDescription = weatherContainer.querySelector('.weather-description'
 const humidity = weatherContainer.querySelector('.humidity');
 const wind = weatherContainer.querySelector('.wind');
 const city = weatherContainer.querySelector('.city');
-city.value = 'Москва';
+let cityValue = localStorage.getItem('city') ?  localStorage.getItem('city') : 'Москва';
+city.value = cityValue;
 const weatherError = weatherContainer.querySelector('.weather-error');
 
 function setWeather(data) {
@@ -15,8 +17,8 @@ function setWeather(data) {
   weatherIcon.classList.add(`owf-${data.weather[0].id}`);
   temperature.textContent = `${Math.round(data.main.temp)}°C`;
   weatherDescription.textContent = data.weather[0].description;
-  humidity.innerHTML = `<span>Влажность ${data.main.humidity} %</span>`;
-  wind.innerHTML = `<span>Ветер: ${Math.round(data.wind.speed)} м/с</span>`;
+  humidity.innerHTML = `<span>${currentLanguage === 'ru' ? 'Влажность' : 'Humidity'}: ${data.main.humidity} %</span>`;
+  wind.innerHTML = `<span>${currentLanguage === 'ru' ? 'Ветер' : 'Wind'}: ${Math.round(data.wind.speed)} м/с</span>`;
   weatherError.innerHTML = ' ';
 }
 
@@ -30,20 +32,9 @@ function showAlertLoad() {
 }
 
 city.addEventListener('change', (evt) => {
-  city.value = evt.target.value;
-  getWeather(city.value, setWeather, showAlertLoad);
+  cityValue = evt.target.value;
+  getWeather(currentLanguage, cityValue, setWeather, showAlertLoad);
+  localStorage.setItem('city', cityValue);
 });
 
-function setLocalStorage() {
-  localStorage.setItem('city', city.value);
-}
-
-function getLocalStorage() {
-  if (localStorage.getItem('city')) {
-    city.value = localStorage.getItem('city');
-  }
-  getWeather(city.value, setWeather, showAlertLoad);
-}
-
-window.addEventListener('beforeunload', setLocalStorage);
-window.addEventListener('load', getLocalStorage);
+export {setWeather, showAlertLoad, cityValue};

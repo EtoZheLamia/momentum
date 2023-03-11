@@ -1,12 +1,13 @@
-import { getQuotes } from './api.js';
 import { getRandomPositiveInteger } from './util.js';
 
 const quoteContainer = document.querySelector('.quote');
 const author = document.querySelector('.author');
 const quoteButton = document.querySelector('.change-quote');
+let quotes;
 
 function setQuote(data) {
-  const quote = data[getRandomPositiveInteger(0,data.length-1)];
+  quotes = data;
+  const quote = quotes[getRandomPositiveInteger(0,quotes.length-1)];
   quoteContainer.textContent = quote.text;
   author.textContent = quote.author;
 }
@@ -16,10 +17,9 @@ function errorLoad() {
   quoteContainer.textContent = 'Не удалось загрузить цитату. Перезагрузите страницу или попробуйте позже.';
 }
 
-getQuotes(setQuote,errorLoad);
-
 quoteButton.addEventListener('click', ()=>{
-  getQuotes(setQuote,errorLoad);
+  setQuote(quotes);
 });
 
+export {setQuote, errorLoad};
 
