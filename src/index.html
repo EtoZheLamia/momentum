@@ -54,7 +54,7 @@
     <date class="date"></date>
     <div class="greeting-container">
       <span class="greeting"></span>
-      <input type="text" class="name" placeholder="[Введите имя]"/>
+      <input type="text" class="name"/>
     </div>
   </main>
   <footer class="footer">
@@ -63,6 +63,24 @@
       <div class="quote"></div>
       <div class="author"></div>
     </div>
+    <div class="settings">
+      <button class="btn-settings player-icon"></button>
+    </div>
   </footer>
+  <div class="popup-container">
+    <div class="popup-settings">
+      <button class="popup-button"></button>
+      <section class="popup-content">
+        <h2 class="popup-title">Настройки</h2>
+        <div class="language-switcher">
+          <input type="radio" name="language" value="ru" id="ru" class="switcher__input switcher__input--ru" checked="checked">
+          <label class="switcher__controls" for="ru">Рус</label>
+          <input type="radio" name="language" value="en" id="en" class="switcher__input switcher__input--en">
+          <label class="switcher__controls" for="en">Англ</label>
+          <span class="switcher__toggle"></span>
+        </div>
+      </section>
+    </div>
+  </div>
 </body>
 </html>
