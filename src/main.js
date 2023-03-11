@@ -10,9 +10,11 @@ import { currentLanguage } from './js/translation.js';
 import { getQuotes, getWeather  } from './js/api.js';
 import {setQuote, errorLoad} from './js/quote.js';
 import { setWeather, showAlertLoad, cityValue } from './js/weather.js';
-
+// import { getImageUnsplash } from './js/api-image.js';
+// import { setBg } from './js/image-slider.js';
 
 window.addEventListener('load', () => {
   getQuotes(currentLanguage, setQuote, errorLoad);
   getWeather(currentLanguage, cityValue, setWeather, showAlertLoad);
 });
+// getImageUnsplash('pug', setBg );
