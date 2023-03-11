@@ -5,6 +5,7 @@ import './js/time.js';
 import './js/image-slider.js';
 import './js/audio.js';
 import './js/popup.js';
+import './js/api-image.js';
 
 import { currentLanguage } from './js/translation.js';
 import { getQuotes, getWeather  } from './js/api.js';
