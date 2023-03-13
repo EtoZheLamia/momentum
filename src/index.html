@@ -67,20 +67,71 @@
       <button class="btn-settings player-icon"></button>
     </div>
   </footer>
-  <div class="popup-container">
-    <div class="popup-settings">
-      <button class="popup-button"></button>
-      <section class="popup-content">
-        <h2 class="popup-title">Настройки</h2>
+  <div class="popup-container popup-container--hide">
+    <button class="popup-button"></button>
+    <section class="popup-content">
+      <h2 class="popup-title">Настройки</h2>
+      <div class="popup-language">
+        <h3 class="popup__subtitle popup__subtitle--language" id="language">Язык:</h3>
         <div class="language-switcher">
           <input type="radio" name="language" value="ru" id="ru" class="switcher__input switcher__input--ru" checked="checked">
-          <label class="switcher__controls" for="ru">Рус</label>
+          <label class="switcher__controls switcher__controls--language" for="ru">Рус</label>
           <input type="radio" name="language" value="en" id="en" class="switcher__input switcher__input--en">
-          <label class="switcher__controls" for="en">Англ</label>
+          <label class="switcher__controls switcher__controls--language" for="en">Eng</label>
           <span class="switcher__toggle"></span>
         </div>
-      </section>
-    </div>
-  </div>
+      </div>
+      <div class="popup__image">
+        <h3 class="popup__subtitle popup__subtitle--image" id="imageSource">Источник фонового изображения</h3>
+        <div class="image-switcher">
+          <input type="radio" name="image" value="github" id="github" class="switcher__input switcher__input--image" checked="checked">
+          <label class="switcher__controls switcher__controls--image" for="github">Github</label>
+          <input type="radio" name="image" value="unsplash" id="unsplash" class="switcher__input switcher__input--image">
+          <label class="switcher__controls switcher__controls--image" for="unsplash">Unsplash</label>
+          <input type="radio" name="image" value="flickr" id="flickr" class="switcher__input switcher__input--image">
+          <label class="switcher__controls switcher__controls--image" for="flickr">Flickr</label>
+        </div>
+        <div class="image-tags">
+          <h3 class="popup__subtitle popup__subtitle--tags" id="tags">Теги:</h3>
+          <input class="switcher__input switcher__input--image" type="checkbox" name="animals" value="animals" id="animals" checked>
+          <label class="switcher__controls switcher__controls--tags" for="animals">Животные</label>
+          <input class="switcher__input switcher__input--image" type="checkbox" name="cars" value="cars" id="cars" checked>
+          <label class="switcher__controls switcher__controls--tags" for="cars">Автомобили</label>
+          <input class="switcher__input switcher__input--image" type="checkbox" name="flowers" value="flowers" id="flowers" checked>
+          <label class="switcher__controls switcher__controls--tags" for="flowers">Цветы</label>
+          <input class="switcher__input switcher__input--image" type="checkbox" name="cloud" value="cloud" id="cloud" checked>
+          <label class="switcher__controls switcher__controls--tags" for="cloud">Облака</label>
+          <input class="switcher__input switcher__input--image" type="checkbox" name="seaside" value="seaside" id="seaside" checked>
+          <label class="switcher__controls switcher__controls--tags" for="seaside">Пляжи</label>
+          <input class="switcher__input switcher__input--image" type="checkbox" name="nature" value="nature" id="nature" checked>
+          <label class="switcher__controls switcher__controls--tags" for="nature">Природа</label>
+          <input class="switcher__input switcher__input--image" type="checkbox" name="city" value="city" id="city" checked>
+          <label class="switcher__controls switcher__controls--tags" for="city">Города</label>
+          <input class="switcher__input switcher__input--image" type="checkbox" name="sunrise" value="sunrise" id="sunrise" checked>
+          <label class="switcher__controls switcher__controls--tags" for="sunrise">Восход</label>
+          <input class="switcher__input switcher__input--image" type="checkbox" name="pug" value="pug" id="pug" checked>
+          <label class="switcher__controls switcher__controls--tags" for="pug">Мопсы</label>
+        </div>
+      </div>
+      <div class="popup__blocks">
+        <h3 class="popup__subtitle popup__subtitle--blocks id=" id="blocks">Блоки на экране</h3>
+        <input class="switcher__input switcher__input--image" type="checkbox" name="time" value="time" id="time" checked>
+        <label class="switcher__controls switcher__controls--tags" for="time">Время</label>
+        <input class="switcher__input switcher__input--image" type="checkbox" name="quote" value="quote" id="quote" checked>
+        <label class="switcher__controls switcher__controls--tags" for="quote">Цитата</label>
+        <input class="switcher__input switcher__input--image" type="checkbox" name="date" value="date" id="date" checked>
+        <label class="switcher__controls switcher__controls--tags" for="date">Дата</label>
+        <input class="switcher__input switcher__input--image" type="checkbox" name="greeting" value="greeting" id="greeting" checked>
+        <label class="switcher__controls switcher__controls--tags" for="greeting">Приветствие</label>
+        <input class="switcher__input switcher__input--image" type="checkbox" name="weather" value="weather" id="weather" checked>
+        <label class="switcher__controls switcher__controls--tags" for="weather">Погода</label>
+        <input class="switcher__input switcher__input--image" type="checkbox" name="player" value="player" id="player" checked>
+        <label class="switcher__controls switcher__controls--tags" for="player">Аудиоплеер</label>
+        <input class="switcher__input switcher__input--image" type="checkbox" name="todo" value="todo" id="todo" checked>
+        <label class="switcher__controls switcher__controls--tags" for="todo">Список дел</label>
+      </div>
+    </section>
+
+</div>
 </body>
 </html>
