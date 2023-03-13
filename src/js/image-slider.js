@@ -8,7 +8,7 @@ const bgImage = document.querySelector('body');
 let bgNum = getRandomPositiveInteger(1, 20);
 const nextImage = document.querySelector('.slide-next');
 const prevImage = document.querySelector('.slide-prev');
-let soursePicture = 'Unsplash';
+let soursePicture = 'Flickr';
 
 nextImage.addEventListener('click', ()=>{
   if (soursePicture === 'Unsplash') {
@@ -78,3 +78,15 @@ function getSlideNext() {
   }
   setBgGithub();
 }
+
+
+//  Unsplash отдает по 1 изображению. На каждый тег по запросу. Хранить в масииве?
+//  count	Количество возвращаемых фотографий. (По умолчанию: 1; максимум: 30).Ограничение 50 в час.
+// теги только на английском
+
+
+//  Flickr отдает до 100 изображений. Поддерживает несколько тегов:
+//  tags (Необязательно)
+//  Список тегов, разделенных запятыми. Будут возвращены фотографии с одним или несколькими из перечисленных тегов. Вы можете исключить результаты, соответствующие термину, добавив перед ним символ - .
+//  tag_mode (Необязательно)
+//  Либо "любой" для комбинации тегов ИЛИ, либо "все" для комбинации И. По умолчанию используется значение "любой", если оно не указано.

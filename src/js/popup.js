@@ -4,9 +4,9 @@ const popupButtonClose = popupContainer.querySelector('.popup-button');
 
 
 settingButton.addEventListener('click', ()=> {
-  popupContainer.style.display = 'block';
+  popupContainer.classList.toggle('popup-container--hide');
 });
 
 popupButtonClose.addEventListener('click', ()=> {
-  popupContainer.style.display = 'none';
+  popupContainer.classList.toggle('popup-container--hide');
 });
