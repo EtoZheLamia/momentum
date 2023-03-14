@@ -1,8 +1,3 @@
-import { getWeather } from './api.js';
-import { setWeather, showAlertLoad } from './weather.js';
-import { getQuotes } from './api.js';
-import {setQuote, errorLoad} from './quote.js';
-
 const dictionaryTranslation = {
   'placeholder' : {
     'en': '[Enter your name]',
@@ -56,9 +51,9 @@ const dictionaryTranslation = {
     'en': 'Sunrise',
     'ru' : 'Восход'
   },
-  'pug' : {
-    'en': 'Pug',
-    'ru' : 'Восход'
+  'pugs' : {
+    'en': 'Pugs',
+    'ru' : 'Мопсы'
   },
   'blocks' : {
     'en': 'Blocks on the screen',
@@ -94,20 +89,6 @@ const dictionaryTranslation = {
   }
 };
 
-const languageSwitcher = document.querySelector('.language-switcher');
-let currentLanguage = localStorage.getItem('language') ? localStorage.getItem('language') : 'ru';
-const currentSwitcher = languageSwitcher.querySelector(`#${currentLanguage}`);
-currentSwitcher.checked = true;
-let currentCity;
-
-languageSwitcher.addEventListener('change', (evt)=>{
-  currentLanguage = evt.target.id;
-  currentCity = document.querySelector('.city').value;
-  changeLanguage(currentLanguage);
-  getWeather(currentLanguage, currentCity, setWeather, showAlertLoad);
-  getQuotes(currentLanguage, setQuote, errorLoad);
-});
-
 function changeLanguage(lang) {
   document.querySelector('.name').placeholder = dictionaryTranslation.placeholder[lang];
   const popupContainer = document.querySelector('.popup-container');
@@ -120,18 +101,4 @@ function changeLanguage(lang) {
   });
 }
 
-function setLocalStorage() {
-  localStorage.setItem('language', currentLanguage);
-}
-
-function getLocalStorage() {
-  if (localStorage.getItem('language')) {
-    currentLanguage = localStorage.getItem('language');
-  }
-}
-
-window.addEventListener('beforeunload', setLocalStorage);
-window.addEventListener('load', getLocalStorage);
-
-
-export {currentLanguage, changeLanguage};
+export {changeLanguage};

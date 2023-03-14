@@ -1,4 +1,4 @@
-import { currentLanguage } from './translation.js';
+import { currentLanguage } from './popup.js';
 import {setGreetings} from './greeting.js';
 
 const TIME = document.querySelector('.time');

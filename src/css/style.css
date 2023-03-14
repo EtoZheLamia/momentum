@@ -472,7 +472,6 @@ body {
 }
 
 .language-switcher {
-  outline: 1px solid #919191;
   border-radius: 30px;
   display: flex;
   gap: 10px;
@@ -480,32 +479,28 @@ body {
   position: relative;
 }
 
-.switcher__controls--language {
-  width: 50%;
-  line-height: 30px;
-  z-index: 10;
+.switcher__controls {
+  outline: 1px solid rgb(127, 198, 240);
+  padding: 5px;
 }
 
-.switcher__toggle {
-  position: absolute;
-  cursor: pointer;
-  background-color: rgb(127, 198, 240);
+.switcher__controls--language {
+  width: 50%;
+}
+
+.switcher__controls--image {
+  width: 28%;
+}
+
+.switcher__controls--radio {
   border-radius: 30px;
-  width: 45%;
-  height: 24px;
-  top: 3px;
-  left: 5px;
-  z-index: -1;
-  transition: left 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .switcher__input:checked + .switcher__controls {
+  background-color: rgb(127, 198, 240);
   color:#ffffff;
 }
 
-.switcher__input--en:checked ~ .switcher__toggle {
-  left: 105px;
-}
 
 .popup__image {
   display: flex;
@@ -515,21 +510,7 @@ body {
 
 .image-switcher {
   display: flex;
-  justify-content: space-between;
-}
-
-.switcher__controls--image {
-  padding: 5px;
-  width: 28%;
-  border-radius: 30px;
-}
-
-.switcher__input--image:checked + .switcher__controls {
-  background-color:rgb(127, 198, 240)
-}
-
-.switcher__controls--tags {
-  padding: 5px;
+  justify-content: space-evenly;
 }
 
 .image-tags {
