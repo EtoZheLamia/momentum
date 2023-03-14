@@ -74,43 +74,43 @@
       <div class="popup-language">
         <h3 class="popup__subtitle popup__subtitle--language" id="language">Язык:</h3>
         <div class="language-switcher">
-          <input type="radio" name="language" value="ru" id="ru" class="switcher__input switcher__input--ru" checked="checked">
-          <label class="switcher__controls switcher__controls--language" for="ru">Рус</label>
-          <input type="radio" name="language" value="en" id="en" class="switcher__input switcher__input--en">
-          <label class="switcher__controls switcher__controls--language" for="en">Eng</label>
-          <span class="switcher__toggle"></span>
+          <input type="radio" name="language" value="ru" id="ru" class="switcher__input switcher__input--ru switcher__input--radio" checked="checked">
+          <label class="switcher__controls switcher__controls--language switcher__controls--radio" for="ru">Рус</label>
+          <input type="radio" name="language" value="en" id="en" class="switcher__input switcher__input--en switcher__input--radio">
+          <label class="switcher__controls switcher__controls--language switcher__controls--radio" for="en">Eng</label>
         </div>
       </div>
       <div class="popup__image">
         <h3 class="popup__subtitle popup__subtitle--image" id="imageSource">Источник фонового изображения</h3>
+        <span class = "popup__error"></span>
         <div class="image-switcher">
-          <input type="radio" name="image" value="github" id="github" class="switcher__input switcher__input--image" checked="checked">
-          <label class="switcher__controls switcher__controls--image" for="github">Github</label>
-          <input type="radio" name="image" value="unsplash" id="unsplash" class="switcher__input switcher__input--image">
-          <label class="switcher__controls switcher__controls--image" for="unsplash">Unsplash</label>
-          <input type="radio" name="image" value="flickr" id="flickr" class="switcher__input switcher__input--image">
-          <label class="switcher__controls switcher__controls--image" for="flickr">Flickr</label>
+          <input type="radio" name="image" value="github" id="github" class="switcher__input switcher__input--image switcher__input--radio" checked="checked">
+          <label class="switcher__controls switcher__controls--image switcher__controls--radio" for="github">Github</label>
+          <input type="radio" name="image" value="unsplash" id="unsplash" class="switcher__input switcher__input--image switcher__input--radio">
+          <label class="switcher__controls switcher__controls--image switcher__controls--radio" for="unsplash">Unsplash</label>
+          <input type="radio" name="image" value="flickr" id="flickr" class="switcher__input switcher__input--image switcher__input--radio">
+          <label class="switcher__controls switcher__controls--image switcher__controls--radio" for="flickr">Flickr</label>
         </div>
         <div class="image-tags">
           <h3 class="popup__subtitle popup__subtitle--tags" id="tags">Теги:</h3>
-          <input class="switcher__input switcher__input--image" type="checkbox" name="animals" value="animals" id="animals" checked>
+          <input class="switcher__input switcher__input--image" type="checkbox" name="animals" value="animals" id="animals">
           <label class="switcher__controls switcher__controls--tags" for="animals">Животные</label>
-          <input class="switcher__input switcher__input--image" type="checkbox" name="cars" value="cars" id="cars" checked>
+          <input class="switcher__input switcher__input--image" type="checkbox" name="cars" value="cars" id="cars">
           <label class="switcher__controls switcher__controls--tags" for="cars">Автомобили</label>
-          <input class="switcher__input switcher__input--image" type="checkbox" name="flowers" value="flowers" id="flowers" checked>
+          <input class="switcher__input switcher__input--image" type="checkbox" name="flowers" value="flowers" id="flowers">
           <label class="switcher__controls switcher__controls--tags" for="flowers">Цветы</label>
-          <input class="switcher__input switcher__input--image" type="checkbox" name="cloud" value="cloud" id="cloud" checked>
+          <input class="switcher__input switcher__input--image" type="checkbox" name="cloud" value="cloud" id="cloud">
           <label class="switcher__controls switcher__controls--tags" for="cloud">Облака</label>
-          <input class="switcher__input switcher__input--image" type="checkbox" name="seaside" value="seaside" id="seaside" checked>
+          <input class="switcher__input switcher__input--image" type="checkbox" name="seaside" value="seaside" id="seaside">
           <label class="switcher__controls switcher__controls--tags" for="seaside">Пляжи</label>
-          <input class="switcher__input switcher__input--image" type="checkbox" name="nature" value="nature" id="nature" checked>
+          <input class="switcher__input switcher__input--image" type="checkbox" name="nature" value="nature" id="nature">
           <label class="switcher__controls switcher__controls--tags" for="nature">Природа</label>
-          <input class="switcher__input switcher__input--image" type="checkbox" name="city" value="city" id="city" checked>
+          <input class="switcher__input switcher__input--image" type="checkbox" name="city" value="city" id="city">
           <label class="switcher__controls switcher__controls--tags" for="city">Города</label>
-          <input class="switcher__input switcher__input--image" type="checkbox" name="sunrise" value="sunrise" id="sunrise" checked>
+          <input class="switcher__input switcher__input--image" type="checkbox" name="sunrise" value="sunrise" id="sunrise">
           <label class="switcher__controls switcher__controls--tags" for="sunrise">Восход</label>
-          <input class="switcher__input switcher__input--image" type="checkbox" name="pug" value="pug" id="pug" checked>
-          <label class="switcher__controls switcher__controls--tags" for="pug">Мопсы</label>
+          <input class="switcher__input switcher__input--image" type="checkbox" name="pugs" value="pugs" id="pugs">
+          <label class="switcher__controls switcher__controls--tags" for="pugs">Мопсы</label>
         </div>
       </div>
       <div class="popup__blocks">
@@ -132,6 +132,6 @@
       </div>
     </section>
 
-</div>
+  </div>
 </body>
 </html>

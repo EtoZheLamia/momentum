@@ -1,5 +1,5 @@
 import { getWeather } from './api.js';
-import { currentLanguage } from './translation.js';
+import { currentLanguage } from './popup.js';
 
 const weatherContainer = document.querySelector('.weather');
 const weatherIcon = weatherContainer.querySelector('.weather-icon');
