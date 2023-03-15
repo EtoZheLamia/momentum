@@ -63,7 +63,7 @@ const dictionaryTranslation = {
     'en': 'Time',
     'ru' : 'Время'
   },
-  'quote' : {
+  'quote-container' : {
     'en': 'Quote',
     'ru' : 'Цитата'
   },
@@ -71,7 +71,7 @@ const dictionaryTranslation = {
     'en': 'Date',
     'ru' : 'Дата'
   },
-  'greeting' : {
+  'greeting-container' : {
     'en': 'Greeting',
     'ru' : 'Приветствие'
   },

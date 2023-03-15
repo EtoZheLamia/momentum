@@ -501,7 +501,6 @@ body {
   color:#ffffff;
 }
 
-
 .popup__image {
   display: flex;
   flex-direction: column;
@@ -529,4 +528,3 @@ body {
 .popup__subtitle--tags {
   grid-column: 1/-1;
 }
-

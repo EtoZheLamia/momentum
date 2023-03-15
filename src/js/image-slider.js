@@ -1,7 +1,7 @@
 import {getRandomPositiveInteger} from './util.js';
 import {getTimeOfDay} from './greeting.js';
 import { getImageUnsplash, getImageFlickr } from './api.js';
-import {sourcePicture, tags, errorLoadPicture} from './popup.js';
+import {errorLoadPicture, state} from './popup.js';
 
 const TIME_OF_DAY = ['night', 'morning', 'afternoon', 'evening', ];
 
@@ -12,28 +12,28 @@ const prevImage = document.querySelector('.slide-prev');
 
 
 nextImage.addEventListener('click', ()=>{
-  if (sourcePicture === 'github') {
+  if (state.sourcePicture === 'github') {
     getSlideNext();
   } else {
-    setSourcePicture(sourcePicture);
+    setSourcePicture(state.sourcePicture);
   }
 });
 
 prevImage.addEventListener('click', () => {
-  if (sourcePicture === 'github') {
+  if (state.sourcePicture === 'github') {
     getSlidePrev();
   } else {
-    setSourcePicture(sourcePicture);
+    setSourcePicture(state.sourcePicture);
   }
 });
 
 
 function setSourcePicture(source) {
   if (source === 'unsplash') {
-    getImageUnsplash(tags[getRandomPositiveInteger(0, tags.length)], setBgUnsplash, errorLoadPicture);
+    getImageUnsplash(state.tags[getRandomPositiveInteger(0, state.tags)], setBgUnsplash, errorLoadPicture);
   }
   if (source === 'flickr') {
-    getImageFlickr(tags.toString(), setBgFlickr, errorLoadPicture);
+    getImageFlickr(state.tags.toString(), setBgFlickr, errorLoadPicture);
   }
   if (source === 'github') {
     setBgGithub();
