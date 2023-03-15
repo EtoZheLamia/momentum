@@ -8,7 +8,7 @@
 </head>
 <body>
   <header class="header">
-    <div class="player">
+    <div class="player block">
       <div class="song-title"></div>
       <div class="progress-container">
         <div class="current-time"></div>
@@ -33,7 +33,7 @@
       </div>
       <ul class="play-list"></ul>
     </div>
-    <div class="weather">
+    <div class="weather block">
       <input type="text" class="city"/>
       <i class="weather-icon owf owf-4x"></i>
       <div class="weather-error"></div>
@@ -50,22 +50,25 @@
       <button class="slide-prev slider-icon"></button>
       <button class="slide-next slider-icon"></button>
     </div>
-    <time class="time"></time>
-    <date class="date"></date>
-    <div class="greeting-container">
+    <time class="time block"></time>
+    <date class="date block"></date>
+    <div class="greeting-container block">
       <span class="greeting"></span>
       <input type="text" class="name"/>
     </div>
   </main>
   <footer class="footer">
-    <button class="change-quote"></button>
-    <div>
-      <div class="quote"></div>
-      <div class="author"></div>
+    <div class="quote-container block">
+      <button class="change-quote"></button>
+      <div>
+        <div class="quote"></div>
+        <div class="author"></div>
+      </div>
     </div>
     <div class="settings">
       <button class="btn-settings player-icon"></button>
     </div>
+    <div class="todo block"></div>
   </footer>
   <div class="popup-container popup-container--hide">
     <button class="popup-button"></button>
@@ -74,7 +77,7 @@
       <div class="popup-language">
         <h3 class="popup__subtitle popup__subtitle--language" id="language">Язык:</h3>
         <div class="language-switcher">
-          <input type="radio" name="language" value="ru" id="ru" class="switcher__input switcher__input--ru switcher__input--radio" checked="checked">
+          <input type="radio" name="language" value="ru" id="ru" class="switcher__input switcher__input--ru switcher__input--radio">
           <label class="switcher__controls switcher__controls--language switcher__controls--radio" for="ru">Рус</label>
           <input type="radio" name="language" value="en" id="en" class="switcher__input switcher__input--en switcher__input--radio">
           <label class="switcher__controls switcher__controls--language switcher__controls--radio" for="en">Eng</label>
@@ -115,19 +118,19 @@
       </div>
       <div class="popup__blocks">
         <h3 class="popup__subtitle popup__subtitle--blocks id=" id="blocks">Блоки на экране</h3>
-        <input class="switcher__input switcher__input--image" type="checkbox" name="time" value="time" id="time" checked>
+        <input class="switcher__input switcher__input--image" type="checkbox" name="time" value="time" id="time">
         <label class="switcher__controls switcher__controls--tags" for="time">Время</label>
-        <input class="switcher__input switcher__input--image" type="checkbox" name="quote" value="quote" id="quote" checked>
-        <label class="switcher__controls switcher__controls--tags" for="quote">Цитата</label>
-        <input class="switcher__input switcher__input--image" type="checkbox" name="date" value="date" id="date" checked>
+        <input class="switcher__input switcher__input--image" type="checkbox" name="quote-container" value="quote-container" id="quote-container">
+        <label class="switcher__controls switcher__controls--tags" for="quote-container">Цитата</label>
+        <input class="switcher__input switcher__input--image" type="checkbox" name="date" value="date" id="date">
         <label class="switcher__controls switcher__controls--tags" for="date">Дата</label>
-        <input class="switcher__input switcher__input--image" type="checkbox" name="greeting" value="greeting" id="greeting" checked>
-        <label class="switcher__controls switcher__controls--tags" for="greeting">Приветствие</label>
-        <input class="switcher__input switcher__input--image" type="checkbox" name="weather" value="weather" id="weather" checked>
+        <input class="switcher__input switcher__input--image" type="checkbox" name="greeting-container" value="greeting-container" id="greeting-container">
+        <label class="switcher__controls switcher__controls--tags" for="greeting-container">Приветствие</label>
+        <input class="switcher__input switcher__input--image" type="checkbox" name="weather" value="weather" id="weather">
         <label class="switcher__controls switcher__controls--tags" for="weather">Погода</label>
-        <input class="switcher__input switcher__input--image" type="checkbox" name="player" value="player" id="player" checked>
+        <input class="switcher__input switcher__input--image" type="checkbox" name="player" value="player" id="player">
         <label class="switcher__controls switcher__controls--tags" for="player">Аудиоплеер</label>
-        <input class="switcher__input switcher__input--image" type="checkbox" name="todo" value="todo" id="todo" checked>
+        <input class="switcher__input switcher__input--image" type="checkbox" name="todo" value="todo" id="todo">
         <label class="switcher__controls switcher__controls--tags" for="todo">Список дел</label>
       </div>
     </section>

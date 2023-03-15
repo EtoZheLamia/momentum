@@ -1,4 +1,4 @@
-import { currentLanguage } from './popup.js';
+import { state } from './popup.js';
 import {setGreetings} from './greeting.js';
 
 const TIME = document.querySelector('.time');
@@ -16,8 +16,8 @@ function showTime() {
   const date = new Date();
   const currentTime = date.toLocaleTimeString();
   TIME.textContent = currentTime;
-  showDate(currentLanguage);
-  setGreetings(currentLanguage);
+  showDate(state.currentLanguage);
+  setGreetings(state.currentLanguage);
   setTimeout(showTime, 1000);
 }
 

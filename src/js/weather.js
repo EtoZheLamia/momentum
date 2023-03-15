@@ -1,5 +1,5 @@
 import { getWeather } from './api.js';
-import { currentLanguage } from './popup.js';
+import { state } from './popup.js';
 
 const weatherContainer = document.querySelector('.weather');
 const weatherIcon = weatherContainer.querySelector('.weather-icon');
@@ -17,8 +17,8 @@ function setWeather(data) {
   weatherIcon.classList.add(`owf-${data.weather[0].id}`);
   temperature.textContent = `${Math.round(data.main.temp)}°C`;
   weatherDescription.textContent = data.weather[0].description;
-  humidity.innerHTML = `<span>${currentLanguage === 'ru' ? 'Влажность' : 'Humidity'}: ${data.main.humidity} %</span>`;
-  wind.innerHTML = `<span>${currentLanguage === 'ru' ? 'Ветер' : 'Wind'}: ${Math.round(data.wind.speed)} м/с</span>`;
+  humidity.innerHTML = `<span>${state.currentLanguage === 'ru' ? 'Влажность' : 'Humidity'}: ${data.main.humidity} %</span>`;
+  wind.innerHTML = `<span>${state.currentLanguage === 'ru' ? 'Ветер' : 'Wind'}: ${Math.round(data.wind.speed)} м/с</span>`;
   weatherError.innerHTML = ' ';
 }
 
@@ -33,7 +33,7 @@ function showAlertLoad() {
 
 city.addEventListener('change', (evt) => {
   cityValue = evt.target.value;
-  getWeather(currentLanguage, cityValue, setWeather, showAlertLoad);
+  getWeather(state.currentLanguage, cityValue, setWeather, showAlertLoad);
   localStorage.setItem('city', cityValue);
 });
 

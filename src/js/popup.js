@@ -3,6 +3,24 @@ import { getWeather, getQuotes } from './api.js';
 import {setQuote, errorLoad} from './quote.js';
 import {changeLanguage} from './translation.js';
 import { setSourcePicture} from './image-slider.js';
+import {blocksHandler} from './handler-blocks.js';
+
+const state = {
+  currentLanguage: 'ru',
+  sourcePicture: 'github',
+  blocks: ['todo', 'greeting-container', 'time', 'quote-container', 'weather', 'player', 'date'],
+  tags: ['animals', 'cars', 'flowers', 'cloud', 'seaside', 'nature', 'city', 'sunrise', 'pugs']
+};
+
+function setCheckboxes(data, checkboxes) {
+  data.forEach((el) => {
+    for (let i = 0; i < checkboxes.length; i++) {
+      if (el === checkboxes[i].getAttribute('id')) {
+        checkboxes[i].checked = true;
+      }
+    }
+  });
+}
 
 const settingButton = document.querySelector('.btn-settings');
 const popupContainer = document.querySelector('.popup-container');
@@ -17,82 +35,95 @@ popupButtonClose.addEventListener('click', ()=> {
   popupContainer.classList.toggle('popup-container--hide');
 });
 
-// Смена изображения
+const languageSwitcher = document.querySelector('.language-switcher');
+let currentCity;
+languageSwitcher.addEventListener('change', (evt)=>{
+  state.currentLanguage = evt.target.id;
+  changeLanguage(state.currentLanguage);
+  currentCity = document.querySelector('.city').value;
+  getWeather(state.currentLanguage, currentCity, setWeather, showAlertLoad);
+  getQuotes(state.currentLanguage, setQuote, errorLoad);
+});
+
 const imageSwitcher = popupContainer.querySelector('.image-switcher');
-let sourcePicture = localStorage.getItem('sourcePicture') ? localStorage.getItem('sourcePicture') : 'github';
-const currentImageSwitcher = imageSwitcher.querySelector(`#${sourcePicture}`);
-currentImageSwitcher.checked = true;
-
-if (sourcePicture === 'github') {
-  imageTags.style.display = 'none';
-}else {
-  imageTags.style.display = 'grid';
-}
-
 imageSwitcher.addEventListener('change', (evt)=> {
-  sourcePicture = evt.target.getAttribute('id');
+  state.sourcePicture = evt.target.getAttribute('id');
   // eslint-disable-next-line no-unused-expressions
-  sourcePicture === 'github'
+  state.sourcePicture === 'github'
     ?  imageTags.style.display = 'none'
     :  imageTags.style.display = 'grid';
-  setSourcePicture(sourcePicture);
+  setSourcePicture(state.sourcePicture);
   popupContainer.querySelector('.popup__error').innerHTML = '';
 });
 
 function errorLoadPicture() {
-  sourcePicture = 'github';
+  state.sourcePicture = 'github';
   // eslint-disable-next-line no-unused-expressions
-  sourcePicture === 'github'
+  state.sourcePicture === 'github'
     ?  imageTags.style.display = 'none'
     :  imageTags.style.display = 'grid';
-  currentImageSwitcher.checked = true;
-  popupContainer.querySelector('.popup__error').innerHTML = `Не удалось загрузить изображение. Переключаемся на ${sourcePicture}`;
-  setSourcePicture(sourcePicture);
+  document.querySelector(`#${state.sourcePicture}`).checked = true;
+  popupContainer.querySelector('.popup__error').innerHTML = `Не удалось загрузить изображение. Переключаемся на ${state.sourcePicture}`;
+  setSourcePicture(state.sourcePicture);
 }
 
-// Собираем теги
-const checkboxes = imageTags.querySelectorAll('.switcher__input');
-let tags = localStorage.getItem('tags') ? JSON.parse(localStorage.getItem('tags')) : ' ';
-
-tags.forEach((el) => {
-  for (let i = 0; i < checkboxes.length; i++) {
-    if (el === checkboxes[i].getAttribute('id')) {
-      checkboxes[i].checked = true;
-    }
+imageTags.addEventListener('change', (evt)=> {
+  const currentIndex = state.tags.indexOf(evt.target.getAttribute('id'));
+  if (evt.target.checked) {
+    state.tags.push(evt.target.getAttribute('id'));
+  } else {
+    state.tags.splice(currentIndex, 1);
   }
 });
 
-imageTags.addEventListener('change', ()=> {
-  tags = [];
-  for (let i = 0; i < checkboxes.length; i++) {
-    if (checkboxes[i].checked) {
-      tags.push(checkboxes[i].getAttribute('id'));
-    }
+const blocksContainer = popupContainer.querySelector('.popup__blocks');
+
+blocksContainer.addEventListener('change', (evt)=> {
+  const currentIndex = state.blocks.indexOf(evt.target.getAttribute('id'));
+  if (evt.target.checked) {
+    state.blocks.push(evt.target.getAttribute('id'));
+  } else {
+    state.blocks.splice(currentIndex, 1);
   }
+  blocksHandler(state.blocks);
 });
 
-// Смена языка
-const languageSwitcher = document.querySelector('.language-switcher');
-let currentLanguage = localStorage.getItem('language') ? localStorage.getItem('language') : 'ru';
-const currentSwitcher = languageSwitcher.querySelector(`#${currentLanguage}`);
-currentSwitcher.checked = true;
-let currentCity;
-
-languageSwitcher.addEventListener('change', (evt)=>{
-  currentLanguage = evt.target.id;
-  changeLanguage(currentLanguage);
-  currentCity = document.querySelector('.city').value;
-  getWeather(currentLanguage, currentCity, setWeather, showAlertLoad);
-  getQuotes(currentLanguage, setQuote, errorLoad);
-});
-
-// LocalStorage
 function setLocalStorage() {
-  localStorage.setItem('language', currentLanguage);
-  localStorage.setItem('sourcePicture', sourcePicture);
-  localStorage.setItem('tags',JSON.stringify(tags));
+  localStorage.setItem('language', state.currentLanguage);
+  localStorage.setItem('sourcePicture', state.sourcePicture);
+  localStorage.setItem('tags',JSON.stringify(state.tags));
+  localStorage.setItem('blocks',JSON.stringify(state.blocks));
 }
 
+function getLocalStorage() {
+  if(localStorage.getItem('blocks')) {
+    state.blocks = JSON.parse(localStorage.getItem('blocks'));
+  }
+  if(localStorage.getItem('tags')) {
+    state.tags = JSON.parse(localStorage.getItem('tags'));
+  }
+  if(localStorage.getItem('language')) {
+    state.currentLanguage = localStorage.getItem('language');
+  }
+  if(localStorage.getItem('sourcePicture')) {
+    state.sourcePicture = localStorage.getItem('sourcePicture');
+  }
+}
+const blocksCheckboxes = document.querySelectorAll('.switcher__input');
+const tagsCheckboxes = document.querySelectorAll('.switcher__input');
+
+window.addEventListener('load', () =>{
+  getLocalStorage();
+  document.querySelector(`#${state.currentLanguage}`).checked = true;
+  document.querySelector(`#${state.sourcePicture}`).checked = true;
+  if (state.sourcePicture === 'github') {
+    imageTags.style.display = 'none';
+  }else {
+    imageTags.style.display = 'grid';
+  }
+  setCheckboxes(state.blocks, blocksCheckboxes);
+  setCheckboxes(state.tags, tagsCheckboxes);
+});
 window.addEventListener('beforeunload', setLocalStorage);
 
-export {currentLanguage, sourcePicture, tags, errorLoadPicture};
+export {errorLoadPicture, state};
