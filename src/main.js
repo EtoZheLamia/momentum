@@ -3,6 +3,7 @@ import './css/owfont-regular.css';
 
 import './js/time.js';
 import './js/audio.js';
+import './js/todo.js';
 
 import {state} from './js/popup.js';
 import { getQuotes, getWeather  } from './js/api.js';
